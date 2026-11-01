@@ -93,7 +93,7 @@ git clone https://github.com/Pr0gCat/time-sense && python3 time-sense/install.py
 ## tb.py 用法
 
 ```bash
-TB="python3 ~/.claude/skills/time-sense/scripts/tb.py"   # 或 repo 內的 skills/time-sense/scripts/tb.py
+TB="python3 $HOME/.claude/skills/time-sense/scripts/tb.py"   # omp：$HOME/.omp/plugins/node_modules/time-sense/skills/time-sense/scripts/tb.py
 
 $TB est 5m --kind action
 # tb: est 5m00s x0.62 (n=7 action) -> 3m06s; soft 4m39s; hard 9m18s
