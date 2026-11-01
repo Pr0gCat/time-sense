@@ -1,0 +1,13 @@
+{
+  "name": "time-sense",
+  "version": "0.1.0",
+  "description": "Time awareness for coding agents: estimate, preflight, watchdog, calibrate, quit",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pr0gCat/time-sense.git"
+  },
+  "omp": {
+    "description": "Time awareness for coding agents: estimate, preflight, watchdog, calibrate, quit",
+    "extensions": ["./index.cjs"]
+  }
+}

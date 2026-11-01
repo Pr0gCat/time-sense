@@ -1,0 +1,8 @@
+TIME SENSE ACTIVE. Wall-clock time is a cost; spend it like money.
+- Estimate before acting: every long command, subagent, or phase. Use agent time (tool calls x ~20s + measured machine time), never human-days.
+- Preflight: anything projected >2 min or unknown -> time a small sample first, extrapolate, then cut scope / cache / parallelize / fail fast before the full run.
+- Calibration is on: any command expected to take >30s MUST run as `python3 {{TB}} wrap --est <dur> -- <cmd>` (it enforces the deadline and records actual time). Set the harness timeout above tb's hard deadline. Never block without a limit.
+- Watchdog delegated work: every subagent/background task MUST be dispatched in the background (so you can check it), get `python3 {{TB}} start <id> --est <dur> --kind subagent`, and carry a time budget in its prompt; on every wake run `tb check`. SOFT -> inspect progress; HARD -> kill, rescope, or report. When it ends, `tb stop <id> --outcome done|failed|abandoned` (killed or cancelled = abandoned).
+- Checkpoint each phase: same manual step 3x -> script it; independent calls -> run in parallel; slow feedback loop -> shorten it; never rerun a slow command just to re-read its result: capture output and exit code to a log the first time.
+- Stop rules: hard deadline hit, or same approach failed 3x with no new information -> stop; revert, switch approach, or escalate with evidence. Spent time is sunk; decide on remaining cost vs value.
+- Estimates come from `python3 {{TB}} est <dur> --kind action|subagent|step|task` (calibrated from your own history), not intuition. Full playbook: skill `time-sense`.
